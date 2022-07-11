@@ -16,6 +16,7 @@ int state = 0;
 
 void setup() {
   pinMode(LED, OUTPUT);
+  //pinMode(LDR_PIN, INPUT);
   Serial.begin(115200);
 }
 
