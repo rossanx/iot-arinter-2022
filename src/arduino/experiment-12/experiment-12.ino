@@ -1,7 +1,7 @@
 
 /*
-  experiment-12 - Formating data
-  Shows how encode sensor data for transmission.
+  experiment-11 Analog imput
+  Reads potentiometer to increase/decrease delay time.
 
   Rossano Pablo Pinto - rossano at gmail dot com
 
@@ -9,28 +9,21 @@
   FATEC Americana - ARInter - CPS - July/2022
 */
 
-char buffer[64];
-#define LDR_PIN A0
-#define TEMP_PIN A1
-int ldr_value = 0;
-int adc_value = 0;
-float temp_value = 0;
-char float_str[10];
-char id[] = "node_id";
+#define LED 13
+#define POT_PIN A0
+int sensor_value = 0;
 
 void setup() {
+  pinMode(LED, OUTPUT);
   Serial.begin(115200);
-  //pinMode(LDR_PIN, INPUT);
-  //pinMode(TEMP_PIN, INPUT);
 }
 
 void loop() {
-  ldr_value = analogRead(LDR_PIN);
-  delay(100);
-  adc_value = analogRead(TEMP_PIN);
-  temp_value = (adc_value * ( 5000 / 1024.0)) / 10;
-  dtostrf(temp_value,2,2,float_str);
-  sprintf(buffer, "%s,%d,%s", id, ldr_value, float_str);
-  Serial.println(buffer);
-  delay(2000);
+  sensor_value = analogRead(POT_PIN);
+  Serial.println(sensor_value);
+  digitalWrite(LED, HIGH);
+  delay(sensor_value);
+  digitalWrite(LED, LOW);
+  delay(sensor_value);
+  
 }

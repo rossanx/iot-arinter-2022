@@ -1,29 +1,42 @@
-
 /*
-  experiment-11 Analog imput
-  Reads potentiometer to increase/decrease delay time.
-
-  Rossano Pablo Pinto - rossano at gmail dot com
-
-  Example code for the Short Term Course IoT: From data collection to data presentation
-  FATEC Americana - ARInter - CPS - July/2022
+ Author: rossano at gmail dot com
 */
 
-#define LED 13
-#define POT_PIN A0
-int sensor_value = 0;
+
+#include <SimpleDHT.h>  
+
+
+#define PROGNAMEID "RUNNING PROGRAM: /home/rossano/Arduino/experiment-11/experiment-11.ino"
+
+
+int DHT11PIN = 2;     
+SimpleDHT11 dht11(DHT11PIN);   
+byte temperature;    
+byte humidity;        
+int ldr_value;        
+
+char temp_hum_lum[65];
+char t[10];  
+char h[10];  
+char l[10]; 
+
+int msg_id = 0;
 
 void setup() {
-  pinMode(LED, OUTPUT);
   Serial.begin(115200);
+   /* PRINT PROGRAM NAME AT SERIAL PORT*/
+  Serial.println(PROGNAMEID);
 }
 
 void loop() {
-  sensor_value = analogRead(POT_PIN);
-  Serial.println(sensor_value);
-  digitalWrite(LED, HIGH);
-  delay(sensor_value);
-  digitalWrite(LED, LOW);
-  delay(sensor_value);
-  
+  dht11.read(&temperature, &humidity, NULL);
+  delay(500);
+  ldr_value = analogRead(A0);
+
+  snprintf (temp_hum_lum, 45, "%d|%d|%d", (int)temperature, (int)humidity, ldr_value);
+  Serial.print(msg_id++);
+  Serial.print(": ");
+  Serial.println(temp_hum_lum);
+
+  delay(2000);
 }
