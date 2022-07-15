@@ -1,7 +1,7 @@
 
 /*
-  experiment-04 (PUSH BUTTONS + LED)
-  Turns an LED ON/OFF with a PUSH BUTTON.
+  experiment-05 (PUSH BUTTONS + LED)
+  LED mimics a PUSH BUTTON.
 
   Rossano Pablo Pinto - rossano at gmail dot com
 

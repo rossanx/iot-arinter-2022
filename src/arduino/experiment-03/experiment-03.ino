@@ -1,7 +1,7 @@
 
 /*
   experiment-03 (Code Organization / functions)
-  Shows how to use functions.
+  Shows how to use functions and string format.
 
   Rossano Pablo Pinto - rossano at gmail dot com
 
