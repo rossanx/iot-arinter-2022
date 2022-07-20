@@ -1,5 +1,5 @@
 /*
-  experiment-13 - Network connection.
+  experiment-14 - Network connection - several HTTP requests.
   Ethernet, IP, DNS.
 
   Hardware:
@@ -24,10 +24,11 @@
 byte mac[] = { 0xAB, 0xCD, 0xEF, 0xAB, 0xCD, 0xEF };
 
 EthernetClient client;
+long elapsedTime = 1;
 
 // CONSTANTS
 char HOST[] = "rossano.pro.br";
-String RESOURCE = "//arinter/data/serial";
+String RESOURCE = "/arinter/data/serial";
 
 void setup() {
   Serial.begin(115200);
@@ -35,34 +36,31 @@ void setup() {
   // initialize the Ethernet shield using DHCP:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("DHCP Failed");
-    while(true);
+    while(true) {
+      delay(3000);
+      Serial.println("Not working...");
+    } 
   }
+}
 
-  // connect to web server on port 80
+void loop() {
+  if (client.available()) {
+    char c = client.read();
+    Serial.write(c);
+  }
+  if (elapsedTime-- <= 0) {
+    request();
+    elapsedTime = 100000; //around 10s
+  }
+}
+
+void request() {
+  client.stop();
   if(client.connect(HOST, 80)) {
-    // if connected
     Serial.println("Connected.");
     client.println("GET " + RESOURCE + " HTTP/1.1");
     client.println("Host: " + String(HOST));
     client.println("Connection: close");
     client.println(); // end HTTP header
-
-    while(client.connected()) {
-      if(client.available()){
-        // read an incoming byte from the server and print it to serial monitor
-        char c = client.read();
-        Serial.print(c);
-      }
-    }
-
-    // the server's disconnected, stop the client:
-    client.stop();
-    Serial.println();
-    Serial.println("disconnected");
-  } else {// if not connected:
-    Serial.println("connection failed");
-  }
-}
-
-void loop() {
+ }
 }

@@ -1,6 +1,6 @@
 
 /*
-  experiment-11 Analog imput
+  experiment-12 Analog imput
   Reads potentiometer to increase/decrease delay time.
 
   Rossano Pablo Pinto - rossano at gmail dot com
@@ -24,6 +24,6 @@ void loop() {
   digitalWrite(LED, HIGH);
   delay(sensor_value);
   digitalWrite(LED, LOW);
-  delay(sensor_value);
+  delay(sensor_value + 500);
   
 }

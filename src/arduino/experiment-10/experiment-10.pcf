@@ -1,0 +1,5 @@
+version,0,0,0:0.8.11
+scale,0,0,0:1.000000
+useAlias,0,0,0:0
+IO Virtual Term,3,301,0:3,2,1,115200
+LM35 (Temperature),382,165,0:23,89
