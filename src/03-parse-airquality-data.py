@@ -15,4 +15,5 @@ with open(sys.argv[1]) as reader:
     airquality=reader.read()
 
 aq = json.loads(airquality)
-print(aq["data"]["dominentpol"])
+print(aq["data"]["city"]["name"], aq["data"]["time"]["iso"])
+print("Dominant polutant: ", aq["data"]["dominentpol"])

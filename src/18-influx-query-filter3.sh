@@ -5,7 +5,7 @@
 
 TOKEN="-RGqXfDNOdit4cpCvSarQqCPawRQoC5kuDKdQbrCyLhO_JiXtu1UgQoYhukzXZNUKaHE2-6Fbat8Gnexn0dmuA=="
 
-influx query -o CPS -t $TOKEN 'from(bucket:"iot")
+influx query -o CPS -t=$TOKEN 'from(bucket:"iot")
      |> range(start:-10d, stop:-8m)
      |> filter(fn: (r) => r._measurement == "airqualityAmericana" and
                           r.node == "192.168.15.73" and (r._field == "o3" or

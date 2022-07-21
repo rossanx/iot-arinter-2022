@@ -7,7 +7,7 @@ TOKEN="-RGqXfDNOdit4cpCvSarQqCPawRQoC5kuDKdQbrCyLhO_JiXtu1UgQoYhukzXZNUKaHE2-6Fb
 
 echo "Deleting _measurement=\"weatherXYZ\" and node=\"192.168.15.73\""
 
-influx delete -o CPS -t $TOKEN --bucket 'iot' \
+influx delete -o CPS -t=$TOKEN --bucket 'iot' \
    --start 2021-07-22T00:00:00Z --stop 2021-07-24T23:59:59Z \
    --predicate '_measurement="weatherXYZ" and node="192.168.15.73"'
 
