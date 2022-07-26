@@ -5,7 +5,6 @@
 
 TOKEN="-RGqXfDNOdit4cpCvSarQqCPawRQoC5kuDKdQbrCyLhO_JiXtu1UgQoYhukzXZNUKaHE2-6Fbat8Gnexn0dmuA=="
 
-influx query -o CPS -t=$TOKEN 'from(bucket:"iot")    
-               |> range(start:-10m, stop:-8m)'
-
-
+influx query -o CPS -t=$TOKEN 'import "timezone" option location = timezone.location(name: "America/Sao_Paulo")
+   from(bucket:"iot")
+   |> range(start: 2022-07-21T23:00:00Z)'

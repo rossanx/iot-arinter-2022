@@ -1,11 +1,9 @@
 /*
- * Authors: Rossano Pablo Pinto
- *          José Luís Zem
+ * Author: Rossano Pablo Pinto
  */
  
 #include <SPI.h>
-#include <UIPEthernet.h> /* In order to work with Proteus you need to use
-                            this header instead of the usual Ethernet.h */
+#include <Ethernet.h> 
 #include <PubSubClient.h>
 
 /* 
@@ -77,7 +75,8 @@ void loop()
     
   Serial.println("Publish message: ");
   Serial.println(/*sensor_value*/ "27.5");
-
+  
+  // REPLACE THIS WITH YOUR ACTUAL CITY AND YOUR NAME
   client.publish("arinter/americana/rossano/arduino/t",
 		 /*sensor_value*/ "27.5");
 

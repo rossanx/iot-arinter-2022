@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Author: rossano at gmail dot com
+# Timestamp: Fri Jul 23 08:07:41 AM -03 2021
+
+
+ influx query -o CPS -t="-RGqXfDNOdit4cpCvSarQqCPawRQoC5kuDKdQbrCyLhO_JiXtu1UgQoYhukzXZNUKaHE2-6Fbat8Gnexn0dmuA==" 'from(bucket:"iot")      |> range(start:-10d, stop:-8m)      |> filter(fn: (r) => r._measurement == "airqualityAmericana" and r.node == "192.168.15.73" and r._field == "o3" and r._value > 1)'
+

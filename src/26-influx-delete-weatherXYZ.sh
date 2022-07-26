@@ -8,7 +8,7 @@ TOKEN="-RGqXfDNOdit4cpCvSarQqCPawRQoC5kuDKdQbrCyLhO_JiXtu1UgQoYhukzXZNUKaHE2-6Fb
 echo "Deleting _measurement=\"weatherXYZ\""
 
 influx delete -o CPS -t=$TOKEN --bucket 'iot' \
-   --start 2021-07-22T00:00:00Z --stop 2021-07-24T23:59:59Z \
+   --start 2022-07-21T00:00:00Z --stop 2022-07-22T23:59:59Z \
    --predicate '_measurement="weatherXYZ"'
 
 
